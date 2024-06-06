@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ item.name }}</h1>
+  <p>{{ item.description }}</p>
+  <p>Category: {{ item.category }}</p>
+  <p>Condition: {{ item.get_condition_display }}</p>
+  {% if item.image %}
+    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+  {% endif %}
+  <p>Uploaded by: {{ item.uploader.username }}</p>
+  <p>Created: {{ item.created_at }}</p>
+  <p>Last updated: {{ item.updated_at }}</p>
+{% endblock %}

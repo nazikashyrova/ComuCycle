@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Item{% endblock title %}
+
+{% block content %}
+<p class="text-left text-3xl ml-10 text-green-900">ComuCycle <i class="fa fa-refresh"></i>
+</p>
+<div class="flex mt-10 justify-center items-center">
+    <div class="w-full max-w-md justify-center items-center p-8 rounded-lg shadow-md bg-green-300">
+        <h1 class="text-2xl font-semibold mb-6 text-center">Create a New Item</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-4">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% for error in form.name.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                {% for error in form.description.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.category.label_tag }}
+                {{ form.category }}
+                {% for error in form.category.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.condition.label_tag }}
+                {{ form.condition }}
+                {% for error in form.condition.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+                {% for error in form.image.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-green-900 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">
+                    Create Item
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

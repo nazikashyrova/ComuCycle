@@ -1,0 +1,14 @@
+{
+  "name": "my-django-project",
+  "version": "1.0.0",
+  "description": "My Django project with Tailwind CSS",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./static/css/styles.css -o ./static/css/tailwind.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
