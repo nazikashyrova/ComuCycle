@@ -3,10 +3,47 @@
 {% block title %}Profile Edit{% endblock title %}
 
 {% block content %}
-    <h1>Profile Edit</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
+<p class="text-left text-3xl ml-10 text-green-900">ComuCycle <i class="fa fa-refresh"></i>
+</p>
+<div class="flex mt-10 justify-center items-center">
+    <div class="w-full max-w-md justify-center items-center p-8 rounded-lg shadow-md bg-green-300">
+        <h1 class="text-2xl font-semibold mb-6 text-center">Edit Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-4">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.bio.label_tag }}
+                {{ form.bio }}
+                {% for error in form.bio.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                {{ form.profile_picture.label_tag }}
+                {{ form.profile_picture }}
+                {% for error in form.profile_picture.errors %}
+                    <p class="text-red-500">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-green-900 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock content %}

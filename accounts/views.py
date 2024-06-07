@@ -29,7 +29,7 @@ class ProfileEditView(UpdateView):
     model = User
     form_class = ProfileForm
     template_name = 'profile_edit.html'
-    success_url = reverse_lazy('/')
+    success_url = reverse_lazy('item_list')
 
     def get_object(self):
-        return self.request.user.profile
+        return self.request.user

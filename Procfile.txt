@@ -1,0 +1,1 @@
+web gunicorn ComuCycle.wsgi:apllication --log-file -

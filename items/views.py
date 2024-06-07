@@ -3,7 +3,8 @@ from django.views.generic import ListView, DetailView, CreateView, View
 from .models import Item
 from .forms import ItemForm
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404,redirect
+from django.http import HttpResponseForbidden
 
 class ItemListView(LoginRequiredMixin, ListView):
     model = Item
@@ -27,7 +28,13 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
 
 class ItemDeleteView(View):
     def post(self, request, pk):
-        item = get_object_or_404(Item, pk=pk)
-        item.delete()
-        return redirect('item_list')  # Redirect to item list page after deletion
+        if request.user.is_authenticated:
+            item = get_object_or_404(Item, pk=pk)
+            if item.uploader.username == request.user:
+                item.delete()
+                return redirect('item_list')  # Redirect to item list page after deletion
+            else:
+                return HttpResponseForbidden('You are not the owner of this item.')
+        else:
+            return HttpResponseForbidden('You must be logged in to delete an item.')
 
